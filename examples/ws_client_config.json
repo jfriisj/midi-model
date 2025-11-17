@@ -1,0 +1,15 @@
+{
+  "action": "generate-midi",
+  "params": {
+    "seed": 42,
+    "gen_events": 256,
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 50,
+    "bpm": 0,
+    "time_sig": "auto",
+    "instruments": ["Acoustic Grand", "Clarinet", "Flute"],
+    "drum_kit": "Standard",
+    "allow_cc": false
+  }
+}

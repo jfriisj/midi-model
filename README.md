@@ -38,6 +38,17 @@
 
 `python train.py`
  
+## Development
+
+- Ruff lint/format:
+  ```bash
+  pip install ruff
+  ruff check .
+  ruff format .
+  ```
+- Fail-fast TODO pattern: see `examples/todo_failfast_example.py` for the required
+  exception-based placeholder template.
+
 ## Citation
 
 ```bibtex

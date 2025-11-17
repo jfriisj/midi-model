@@ -8,3 +8,5 @@ lightning==2.4.0
 gradio==4.19.2
 pyfluidsynth
 tqdm
+onnxruntime
+websockets>=12
