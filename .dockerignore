@@ -1,0 +1,51 @@
+# Docker ignore file for MIDI Model
+.git
+.gitignore
+*.md
+!docker/README.md
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Training artifacts (will be mounted as volumes)
+lightning_logs/
+outputs/
+sample/
+models/
+data/
+
+# Large files that should be downloaded in container
+soundfont.sf2
+
+# Development files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Docker files (prevent recursive copying)
+Dockerfile*
+docker-compose*.yml
+.dockerignore

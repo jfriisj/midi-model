@@ -1,0 +1,32 @@
+services:
+  midi-model-app:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      # Mount directories for persistent data
+      - ./outputs:/app/outputs
+      - ./sample:/app/sample
+      - ./lightning_logs:/app/lightning_logs
+      - ./models:/app/models
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=7860
+    restart: unless-stopped
+
+  # ONNX optimized version (CPU only for better compatibility)
+  midi-model-onnx:
+    build:
+      context: .
+      dockerfile: Dockerfile.onnx
+    ports:
+      - "7861:7860"
+    volumes:
+      - ./outputs:/app/outputs
+      - ./models:/app/models
+    environment:
+      - GRADIO_SERVER_NAME=0.0.0.0
+      - GRADIO_SERVER_PORT=7860
+    restart: unless-stopped
+    profiles:
+      - onnx

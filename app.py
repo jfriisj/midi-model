@@ -298,6 +298,13 @@ def undo_continuation(mid_seq, continuation_state):
 
 def load_model(path, model_config, lora_path):
     global model, tokenizer
+    # Handle case where path might be a list from Gradio dropdown
+    if isinstance(path, list):
+        if len(path) == 0:
+            return "Please select a model path"
+        path = path[0]
+    if not path:
+        return "Please select a model path"
     if model_config == "auto":
         config_path = Path(path).parent / "config.json"
         if config_path.exists():
@@ -315,7 +322,14 @@ def load_model(path, model_config, lora_path):
         state_dict = ckpt.get("state_dict", ckpt)
     model.load_state_dict(state_dict, strict=False)
     if lora_path:
-        model = model.load_merge_lora(lora_path)
+        # Handle case where lora_path might be a list from Gradio dropdown
+        if isinstance(lora_path, list):
+            if len(lora_path) > 0:
+                lora_path = lora_path[0]
+            else:
+                lora_path = None
+        if lora_path:
+            model = model.load_merge_lora(lora_path)
     model.to(opt.device, dtype=torch.bfloat16 if opt.device == "cuda" else torch.float32).eval()
     return "success"
 
@@ -505,6 +519,6 @@ if __name__ == "__main__":
         stop_btn.click(None, [], [], cancels=run_event, queue=False)
         undo_btn.click(undo_continuation, [output_midi_seq, output_continuation_state],
                        [output_midi_seq, output_continuation_state, js_msg], queue=False)
-    # load_javascript not work on ssr mode
-    app.launch(server_port=opt.port, inbrowser=True, share=opt.share, ssr_mode=False)
+    # launch the app
+    app.launch(server_port=opt.port, inbrowser=True, share=opt.share)
     thread_pool.shutdown()

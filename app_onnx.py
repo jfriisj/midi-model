@@ -592,8 +592,18 @@ if __name__ == "__main__":
     synthesizer = MidiSynthesizer(soundfont_path)
     thread_pool = ThreadPoolExecutor(max_workers=OUTPUT_BATCH_SIZE)
     tokenizer = get_tokenizer(opt.model_config)
-    providers = ['CUDAExecutionProvider', 'CPUExecutionProvider']
-    device = "cuda"
+    
+    # Check if CUDA is available and use it, otherwise fall back to CPU
+    available_providers = rt.get_available_providers()
+    if 'CUDAExecutionProvider' in available_providers:
+        providers = ['CUDAExecutionProvider', 'CPUExecutionProvider']
+        device = "cuda"
+        print("Using CUDA for inference")
+    else:
+        providers = ['CPUExecutionProvider']
+        device = "cpu"
+        print("CUDA not available, using CPU for inference")
+    
     try:
         model_base = rt.InferenceSession(opt.model_base_path, providers=providers)
         model_token = rt.InferenceSession(opt.model_token_path, providers=providers)
@@ -733,8 +743,8 @@ if __name__ == "__main__":
         port = opt.port
         if port == -1:
             port = None
-        # load_javascript not work on ssr mode
-        app.launch(server_port=port, share=opt.share, inbrowser=True, ssr_mode=False)
+        # launch the app
+        app.launch(server_port=port, share=opt.share, inbrowser=True)
     except Exception as e:
         print(e)
         input("Failed to launch webui.\nPress any key to continue...")

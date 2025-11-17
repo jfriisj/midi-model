@@ -150,8 +150,58 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
-/models/
+
+# Model files and caches
+models/
+outputs/
+*.onnx
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.h5
+*.pkl
+*.ckpt
+
+# HuggingFace cache
+.cache/
+huggingface/
+transformers/
+.huggingface/
+
+# MIDI files (generated outputs)
 output.mid
-/outputs/
-/soundfont.sf2
-/test.py
+outputs/*.mid
+outputs/*.midi
+
+# Audio/Soundfont files
+*.sf2
+*.wav
+*.mp3
+*.flac
+
+# Test files
+test.py
+
+# Docker volumes
+.docker/
+
+# Logs
+logs/
+wandb/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+*.code-workspace
+
+# Training logs and samples
+lightning_logs/
+custom_models/
+sample/
+
+# Additional env files
+.env.*

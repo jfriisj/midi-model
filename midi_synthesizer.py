@@ -1,6 +1,10 @@
 from threading import Lock
 
-import fluidsynth
+try:
+    import fluidsynth
+except ImportError:
+    # Try alternative import for pyfluidsynth package
+    from pyfluidsynth import fluidsynth
 import numpy as np
 
 
