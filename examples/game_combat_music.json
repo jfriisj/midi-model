@@ -1,0 +1,15 @@
+{
+  "action": "generate-midi",
+  "params": {
+    "seed": 200,
+    "gen_events": 384,
+    "temperature": 1.05,
+    "top_p": 0.96,
+    "top_k": 40,
+    "bpm": 140,
+    "time_sig": "4/4",
+    "instruments": ["Distortion Guitar", "Electric Bass(pick)", "String Ensemble 1", "Brass Section", "Syn Brass 1"],
+    "drum_kit": "Power",
+    "allow_cc": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "action": "generate-midi",
+  "params": {
+    "seed": 100,
+    "gen_events": 512,
+    "temperature": 0.95,
+    "top_p": 0.94,
+    "top_k": 30,
+    "bpm": 80,
+    "time_sig": "4/4",
+    "instruments": ["Acoustic Grand", "Pad 2 (warm)", "Pizzicato Strings", "Flute"],
+    "drum_kit": "None",
+    "allow_cc": true
+  }
+}

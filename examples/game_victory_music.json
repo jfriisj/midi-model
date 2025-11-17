@@ -1,0 +1,15 @@
+{
+  "action": "generate-midi",
+  "params": {
+    "seed": 300,
+    "gen_events": 256,
+    "temperature": 0.98,
+    "top_p": 0.95,
+    "top_k": 25,
+    "bpm": 120,
+    "time_sig": "4/4",
+    "instruments": ["Trumpet", "French Horn", "Trombone", "String Ensemble 1", "Orchestra Hit"],
+    "drum_kit": "Orchestra",
+    "allow_cc": true
+  }
+}

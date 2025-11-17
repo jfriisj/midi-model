@@ -1,0 +1,15 @@
+{
+  "action": "generate-midi",
+  "params": {
+    "seed": 400,
+    "gen_events": 192,
+    "temperature": 0.92,
+    "top_p": 0.93,
+    "top_k": 20,
+    "bpm": 60,
+    "time_sig": "3/4",
+    "instruments": ["Cello", "String Ensemble 2", "Choir Aahs", "Timpani"],
+    "drum_kit": "None",
+    "allow_cc": true
+  }
+}
